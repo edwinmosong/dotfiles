@@ -52,3 +52,17 @@ function! FindConflict()
     endtry
 endfunction
 nnoremap \ :call FindConflict()<CR>
+
+" Yank text to the OS X clipboard
+noremap <leader>y "*yy
+noremap <leader>yy "*Y
+
+" Preserve indentation while pasting text from the OS X clipboard
+noremap <leader>p : set paste<CR>:put *<CR>:set nopaste<CR>
+
+" Powerline settings
+set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+" Always show statusline
+set laststatus=2
+
+
