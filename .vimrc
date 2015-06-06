@@ -1,3 +1,4 @@
+let mapleader=","
 if has("gui_running")
     syntax on
     set hlsearch
@@ -53,16 +54,18 @@ function! FindConflict()
 endfunction
 nnoremap \ :call FindConflict()<CR>
 
-" Yank text to the OS X clipboard
-noremap <leader>y "*yy
-noremap <leader>yy "*Y
-
-" Preserve indentation while pasting text from the OS X clipboard
-noremap <leader>p : set paste<CR>:put *<CR>:set nopaste<CR>
+" " Yank text to the OS X clipboard
+" noremap <leader>y "*y
+" noremap <leader>yy "*Y
+" 
+" " Preserve indentation while pasting text from the OS X clipboard
+" noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 
 " Powerline settings
-set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+set guifont=Monaco\ for\ Powerline:h24
+source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
 " Always show statusline
 set laststatus=2
-
+let g:Powerline_symbols = 'fancy'
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
