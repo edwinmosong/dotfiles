@@ -95,6 +95,11 @@ zle -N zle-line-init
 # use ctrl+t to toggle autosuggestions
 bindkey '^T' autosuggest-toggle
 
+# set highlight colors
+export AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=6'
+export AUTOSUGGESTION_HIGHLIGHT_CURSOR=0
+export AUTOSUGGESTION_ACCEPT_RIGHT_ARROW=1
+
 # setup virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
@@ -103,14 +108,4 @@ source /usr/local/bin/virtualenvwrapper.sh
 export DEV="$HOME/Development"
 export BIN="$HOME/bin"
 export SCRIPTS="$DEV/environment/scripts"
-# export AWS_ACCESS_KEY_ID="AKIAJH4ETARCHSGADQ5Q"
-# export AWS_SECRET_ACCESS_KEY="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"
-# export hostfile="$DEV/splunk-dev/cloud-ops/ansible/plugins/inventory/hosts"
-
-
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
-# powerline settings
-#if [[ -r /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
-#    source /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
-#fi

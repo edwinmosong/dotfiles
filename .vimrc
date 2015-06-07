@@ -6,15 +6,16 @@ if has("gui_running")
     set bs=2
     set ai
     set ruler
-    set guifont=Monaco:h14
+    set guifont=Monaco\ for\ Powerline:h24
     set softtabstop=4   " Number of spaces per Tab
     set tabstop=4       " Force number of spaces for Tab
     highlight ColorColumn guibg=LemonChiffon3
     set colorcolumn=80
 endif
 set colorcolumn=80
+highlight ColorColumn ctermbg=DarkGray
 set number  	    " Show line numbers
-set textwidth=80    " Line wrap (number of cols)
+" set textwidth=80    " Line wrap (number of cols)
 set showmatch       " Highlight matching brace
 set visualbell	    " Use visual bell (no beeping)
 set hlsearch	    " Highlight all search results
@@ -42,9 +43,6 @@ set matchpairs+={:}
 set mouse=a         " enable mouse functionality
 syntax on           " enable syntax hightlighting
 
-set background=light
-colorscheme base16-atelierheath
-
 " binds \ to finding merge conflict!
 function! FindConflict()
     try
@@ -54,18 +52,21 @@ function! FindConflict()
 endfunction
 nnoremap \ :call FindConflict()<CR>
 
-" " Yank text to the OS X clipboard
-" noremap <leader>y "*y
-" noremap <leader>yy "*Y
-" 
-" " Preserve indentation while pasting text from the OS X clipboard
-" noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
-
 " Powerline settings
 set guifont=Monaco\ for\ Powerline:h24
 source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
 " Always show statusline
 set laststatus=2
 let g:Powerline_symbols = 'fancy'
-highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
+" Uses OS X clipboard
+set clipboard=unnamed
+
+" Press Space to toggle highlighting on/off, and show current value.
+:noremap <Space> :set hlsearch! hlsearch?<CR>
+
+" set better highlighting colors for matchparen and search
+hi Search ctermfg=0 ctermbg=15
+hi MatchParen ctermfg=0 ctermbg=15
+" set better color for line numbers
+hi LineNr ctermfg=grey
