@@ -2,7 +2,7 @@
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
+# Look in ~/.oh-my-zsh/themes
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="dpoggi"
@@ -109,3 +109,7 @@ export DEV="$HOME/Development"
 export DOT="$DEV/git-repos/dotfiles/"
 export BIN="$HOME/bin"
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export EDITOR="vim"
+
+# source tmuxinator
+source $BIN/tmuxinator.zsh

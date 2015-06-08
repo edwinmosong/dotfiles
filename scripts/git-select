@@ -1,0 +1,62 @@
+#!/usr/bin/python
+#
+# git utility to checkout branches based on a number, rather than their branch
+# name
+# Tue Aug 5 2014
+
+import os
+from subprocess import PIPE, Popen
+import sys
+
+if __name__ == '__main__':
+
+    # check if we are currently in a git repository
+    # run any git command and check stderr
+    cmd = ['git', 'status']
+    p = Popen(cmd, stdout=PIPE, stderr=PIPE)
+    stdout, stderr = p.communicate()
+
+    if stderr:
+        sys.exit('Not a git repository!')
+
+    # get all branches
+    cmd = ['git', 'branch']
+    p = Popen(cmd, stdout=PIPE, stderr=PIPE)
+    stdout, stderr = p.communicate()
+
+    # split by newlines, strip off * and white spaces
+    stripped_branches = []
+    branches = stdout.split('\n')
+
+    # get current branch
+    current_branch = \
+        [branch.strip('*').strip(' ') for branch in branches if '*' in branch]
+    current_branch = current_branch[0]
+
+    for branch in branches:
+        if len(branch) > 0:
+            stripped_branches.append(branch.strip('*').strip(' '))
+
+    print 'You are currently in branch <%s>' % current_branch
+
+    # display all branches and indexes
+    for i in range(len(stripped_branches)):
+        print '[%i]  %s' %(i, stripped_branches[i])
+
+    try:
+        while True:
+            idx = int(input('Enter the index of the branch you want to checkout: '))
+            if idx >= len(stripped_branches):
+                print 'Index out of range! Retry or exit (CTRL+D).'
+                continue
+            break
+    except:
+        sys.exit('\nCancelled. Exiting...')
+
+    checkout_branch = stripped_branches[idx]
+
+    cmd = ['git', 'checkout', checkout_branch]
+    p = Popen(cmd)
+    p.communicate()
+
+

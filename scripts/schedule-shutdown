@@ -1,0 +1,58 @@
+#!/usr/bin/python
+#
+# utility to schedule a shutdown time
+# created this only to schedule a shutdown after I leave work but I want to
+# let a test run. I don't expect to need the machine to run past 12am!
+# environment: mac os x
+# Tue Aug 5 2014
+
+__author__ = 'edwinmo'
+
+import os
+import sys
+import time
+
+if __name__ == '__main__':
+    # check if script was called with sudo
+    if not os.geteuid() == 0:
+        sys.exit('\nYou need super user permissions to run this script. Please '
+            'rerun the script with sudo')
+
+    # get month, day, hour, and minute
+    year = int(time.strftime('%y'))
+    month = int(time.strftime('%m'))
+    day = int(time.strftime('%d'))
+    hour = int(time.strftime('%H'))
+    minute = int(time.strftime('%M'))
+
+    print 'The current date is ...'
+    cmd = 'date'
+    os.system(cmd)
+
+    try:
+        # if hours + current_hour > 24, this won't work.
+        hours_diff = int(raw_input('How many hours after current time would you'
+            ' like to shutdown? '))
+        if hours_diff < 0 or hours_diff > 24: 
+            print 'Input must be >0 && <24!'
+            raise Exception()
+    except:
+        sys.exit('\nExiting')
+
+    # calculate new time
+    # overflow to next day
+    if hour + hours_diff > 24:
+        day += 1
+        hour = (hour+hours_diff)%24
+    else:
+        hour = hours_diff%24 + hour
+
+    shutdown_at = '%02d%02d%02d%02d%02d' % (year, month, day, hour, minute)
+
+    print 'Shutting down in %i hours.' % hours_diff
+    print 'Scheduled for: %s' % shutdown_at
+
+    # this requires sudo
+    cmd = 'shutdown -s %s' % shutdown_at
+    print 'If you want to cancel the scheduled shutdown, kill the shutdown pid'
+    os.system(cmd)
