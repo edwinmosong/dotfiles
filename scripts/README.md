@@ -10,3 +10,6 @@ overflow is not handled. Must be run with sudo.
 * git-select: git helper script that displays all branches and indexes them, 
 allowing the user to swith to any of the available branches by their index
 number.
+
+* tmuxinator.zsh: used to source in .zshrc to integrate tmuxinator to zsh
+
