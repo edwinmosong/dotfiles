@@ -46,7 +46,7 @@ ZSH_THEME="personal"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ssh-agent)
+plugins=(git ssh-agent zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -106,6 +106,6 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 # set up environment variables
 export DEV="$HOME/Development"
+export DOT="$DEV/git-repos/dotfiles/"
 export BIN="$HOME/bin"
-export SCRIPTS="$DEV/environment/scripts"
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
