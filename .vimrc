@@ -70,3 +70,4 @@ hi Search ctermfg=0 ctermbg=15
 hi MatchParen ctermfg=0 ctermbg=15
 " set better color for line numbers
 hi LineNr ctermfg=grey
+
