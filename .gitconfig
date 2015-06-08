@@ -1,0 +1,9 @@
+[user]
+    name = Edwin Mo Song
+    email = edwin.mo@live.com
+
+[alias]
+    st = status
+    cm = commit
+    pom = push origin master
+
