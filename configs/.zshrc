@@ -98,7 +98,7 @@ bindkey '^T' autosuggest-toggle
 # set highlight colors
 export AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=15'
 # export AUTOSUGGESTION_HIGHLIGHT_CURSOR=0
-# export AUTOSUGGESTION_ACCEPT_RIGHT_ARROW=0
+export AUTOSUGGESTION_ACCEPT_RIGHT_ARROW=1
 
 # setup virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
