@@ -106,6 +106,21 @@ prompt_git() {
   fi
 }
 
+# Virtualenv: name of virtual environment
+prompt_virtualenv() {
+  export VIRTUAL_ENV_DISABLE_PROMPT=1	
+  if [ -n "$VIRTUAL_ENV" ]; then
+      if [ -f "$VIRTUAL_ENV/__name__" ]; then
+          local name=`cat $VIRTUAL_ENV/__name__`
+      elif [ `basename $VIRTUAL_ENV` = "__" ]; then
+          local name=$(basename $(dirname $VIRTUAL_ENV))
+      else
+          local name=$(basename $VIRTUAL_ENV)
+      fi
+      prompt_segment red $PRIMARY_FG "[$name] "
+  fi
+}
+
 # Dir: current working directory
 prompt_dir() {
   prompt_segment green $PRIMARY_FG ' %~ '
@@ -134,6 +149,7 @@ prompt_agnoster_main() {
   prompt_context
   prompt_dir
   prompt_git
+  # prompt_virtualenv
   prompt_end
 }
 

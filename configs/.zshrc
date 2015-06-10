@@ -83,22 +83,22 @@ export NODE_PATH="/usr/local/lib/node_modules"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# # setup zsh-autosuggestions
-# source ~/.zsh-autosuggestions/autosuggestions.zsh
-# 
-# # enable autosuggestions manually
-# zle-line-init() {
-#     zle autosuggest-start
-# }
-# zle -N zle-line-init
-# 
-# # use ctrl+t to toggle autosuggestions
-# bindkey '^T' autosuggest-toggle
+# setup zsh-autosuggestions
+source ~/.zsh-autosuggestions/autosuggestions.zsh
+
+# enable autosuggestions manually
+zle-line-init() {
+    zle autosuggest-start
+}
+zle -N zle-line-init
+
+# use ctrl+t to toggle autosuggestions
+bindkey '^T' autosuggest-toggle
 
 # set highlight colors
-export AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=6'
-export AUTOSUGGESTION_HIGHLIGHT_CURSOR=0
-export AUTOSUGGESTION_ACCEPT_RIGHT_ARROW=0
+export AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=15'
+# export AUTOSUGGESTION_HIGHLIGHT_CURSOR=0
+# export AUTOSUGGESTION_ACCEPT_RIGHT_ARROW=0
 
 # setup virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
