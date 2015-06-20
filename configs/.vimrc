@@ -1,3 +1,39 @@
+" vundle {{{1
+
+" needed to run vundle (but i want this anyways)
+set nocompatible
+
+" vundle needs filtype plugins off
+" i turn it on later
+filetype plugin indent off
+syntax off
+
+" set the runtime path for vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+
+" start vundle environment
+call vundle#begin()
+
+" list of plugins {{{2
+" let Vundle manage Vundle (this is required)
+Plugin 'gmarik/Vundle.vim'
+
+" to install a plugin add it here and run :PluginInstall.
+" to update the plugins run :PluginInstall! or :PluginUpdate
+" to delete a plugin remove it here and run :PluginClean
+ 
+
+" YOUR LIST OF PLUGINS GOES HERE LIKE THIS:
+Plugin 'scrooloose/nerdtree'
+Plugin 'kien/ctrlp.vim'
+
+" add plugins before this
+call vundle#end()
+
+" now (after vundle finished) it is save to turn filetype plugins on
+filetype plugin indent on
+syntax on
+
 let mapleader=","
 if has("gui_running")
     syntax on
@@ -12,7 +48,7 @@ if has("gui_running")
     highlight ColorColumn guibg=LemonChiffon3
     set colorcolumn=80
 endif
-set colorcolumn=80
+" set colorcolumn=80
 highlight ColorColumn ctermbg=DarkGray
 set number  	    " Show line numbers
 " set textwidth=80    " Line wrap (number of cols)
