@@ -26,6 +26,7 @@ Plugin 'gmarik/Vundle.vim'
 " YOUR LIST OF PLUGINS GOES HERE LIKE THIS:
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
+Plugin 'gertjanreynaert/cobalt2-vim-theme'
 
 " add plugins before this
 call vundle#end()

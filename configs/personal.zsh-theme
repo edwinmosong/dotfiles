@@ -1,177 +1,113 @@
-# vim:ft=zsh ts=2 sw=2 sts=2
-#
-# agnoster's Theme - https://gist.github.com/3712874
-# A Powerline-inspired theme for ZSH
-#
-# # README
-#
-# In order for this theme to render correctly, you will need a
-# [Powerline-patched font](https://gist.github.com/1595572).
-#
-# In addition, I recommend the
-# [Solarized theme](https://github.com/altercation/solarized/) and, if you're
-# using it on Mac OS X, [iTerm 2](http://www.iterm2.com/) over Terminal.app -
-# it has significantly better color fidelity.
-#
-# # Goals
-#
-# The aim of this theme is to only show you *relevant* information. Like most
-# prompts, it will only show git information when in a git working directory.
-# However, it goes a step further: everything from the current user and
-# hostname to whether the last call exited with an error to whether background
-# jobs are running in this shell will all be displayed automatically when
-# appropriate.
+# oh-my-zsh Bureau Theme
 
-### Segment drawing
-# A few utility functions to make it easy and re-usable to draw segmented prompts
+### NVM
 
-CURRENT_BG='NONE'
-PRIMARY_FG=black
+ZSH_THEME_NVM_PROMPT_PREFIX="%B⬡%b "
+ZSH_THEME_NVM_PROMPT_SUFFIX=""
 
-# Characters
-SEGMENT_SEPARATOR="\ue0b0"
-PLUSMINUS="\u00b1"
-BRANCH="\ue0a0"
-DETACHED="\u27a6"
-CROSS="\u2718"
-LIGHTNING="\u26a1"
-GEAR="\u2699"
+### Git [±master ▾●]
 
-# Begin a segment
-# Takes two arguments, background and foreground. Both can be omitted,
-# rendering default background/foreground.
-prompt_segment() {
-  local bg fg
-  [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
-  [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
-  if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
-    print -n "%{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%}"
-  else
-    print -n "%{$bg%}%{$fg%}"
+ZSH_THEME_GIT_PROMPT_PREFIX="[%{$fg_bold[green]%}±%{$reset_color%}%{$fg_bold[white]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}]"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✓%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[cyan]%}▴%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg[magenta]%}▾%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_STAGED="%{$fg_bold[green]%}●%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg_bold[yellow]%}●%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg_bold[red]%}●%{$reset_color%}"
+
+bureau_git_branch () {
+  ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
+  ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
+  echo "${ref#refs/heads/}"
+}
+
+bureau_git_status () {
+  _INDEX=$(command git status --porcelain -b 2> /dev/null)
+  _STATUS=""
+  if $(echo "$_INDEX" | grep '^[AMRD]. ' &> /dev/null); then
+    _STATUS="$_STATUS$ZSH_THEME_GIT_PROMPT_STAGED"
   fi
-  CURRENT_BG=$1
-  [[ -n $3 ]] && print -n $3
-}
-
-# End the prompt, closing any open segments
-prompt_end() {
-  if [[ -n $CURRENT_BG ]]; then
-    print -n "%{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
-  else
-    print -n "%{%k%}"
+  if $(echo "$_INDEX" | grep '^.[MTD] ' &> /dev/null); then
+    _STATUS="$_STATUS$ZSH_THEME_GIT_PROMPT_UNSTAGED"
   fi
-  print -n "%{%f%}"
-  CURRENT_BG=''
-}
-
-### Prompt components
-# Each component will draw itself, and hide itself if no information needs to be shown
-
-# Time: current time in hours:minutes:seconds format
-prompt_time() {
-    prompt_segment cyan $PRIMARY_FG " %(!.%{%F{white}%}.)%D{%I:%M:%S %p} "
-}
-
-# Context: user@hostname (who am I and where am I)
-prompt_context() {
-  local user=`whoami`
-
-  if [[ "$user" != "$DEFAULT_USER" || -n "$SSH_CONNECTION" ]]; then
-    prompt_segment $PRIMARY_FG default " %(!.%{%F{yellow}%}.)$user@%m "
+  if $(echo "$_INDEX" | command grep -E '^\?\? ' &> /dev/null); then
+    _STATUS="$_STATUS$ZSH_THEME_GIT_PROMPT_UNTRACKED"
   fi
+  if $(echo "$_INDEX" | grep '^UU ' &> /dev/null); then
+    _STATUS="$_STATUS$ZSH_THEME_GIT_PROMPT_UNMERGED"
+  fi
+  if $(command git rev-parse --verify refs/stash >/dev/null 2>&1); then
+    _STATUS="$_STATUS$ZSH_THEME_GIT_PROMPT_STASHED"
+  fi
+  if $(echo "$_INDEX" | grep '^## .*ahead' &> /dev/null); then
+    _STATUS="$_STATUS$ZSH_THEME_GIT_PROMPT_AHEAD"
+  fi
+  if $(echo "$_INDEX" | grep '^## .*behind' &> /dev/null); then
+    _STATUS="$_STATUS$ZSH_THEME_GIT_PROMPT_BEHIND"
+  fi
+  if $(echo "$_INDEX" | grep '^## .*diverged' &> /dev/null); then
+    _STATUS="$_STATUS$ZSH_THEME_GIT_PROMPT_DIVERGED"
+  fi
+
+  echo $_STATUS
 }
 
-# Git: branch/detached head, dirty status
-prompt_git() {
-  local color ref
-  is_dirty() {
-    test -n "$(git status --porcelain --ignore-submodules)"
-  }
-  ref="$vcs_info_msg_0_"
-  if [[ -n "$ref" ]]; then
-    if is_dirty; then
-      color=yellow
-      ref="${ref} $PLUSMINUS"
-    else
-      color=green
-      ref="${ref} "
+bureau_git_prompt () {
+  local _branch=$(bureau_git_branch)
+  local _status=$(bureau_git_status)
+  local _result=""
+  if [[ "${_branch}x" != "x" ]]; then
+    _result="$ZSH_THEME_GIT_PROMPT_PREFIX$_branch"
+    if [[ "${_status}x" != "x" ]]; then
+      _result="$_result $_status"
     fi
-    if [[ "${ref/.../}" == "$ref" ]]; then
-      ref="$BRANCH $ref"
-    else
-      ref="$DETACHED ${ref/.../}"
-    fi
-    prompt_segment $color $PRIMARY_FG
-    print -Pn " $ref"
+    _result="$_result$ZSH_THEME_GIT_PROMPT_SUFFIX"
   fi
+  echo $_result
 }
 
-# Virtualenv: name of virtual environment
-prompt_virtualenv() {
-  export VIRTUAL_ENV_DISABLE_PROMPT=1	
-  if [ -n "$VIRTUAL_ENV" ]; then
-      if [ -f "$VIRTUAL_ENV/__name__" ]; then
-          local name=`cat $VIRTUAL_ENV/__name__`
-      elif [ `basename $VIRTUAL_ENV` = "__" ]; then
-          local name=$(basename $(dirname $VIRTUAL_ENV))
-      else
-          local name=$(basename $VIRTUAL_ENV)
-      fi
-      prompt_segment red $PRIMARY_FG "[$name] "
-  fi
+
+_PATH="%{$fg_bold[white]%}%~%{$reset_color%}"
+
+if [[ $EUID -eq 0 ]]; then
+  _USERNAME="%{$fg_bold[red]%}%n"
+  _LIBERTY="%{$fg[red]%}#"
+else
+  _USERNAME="%{$fg_bold[white]%}%n"
+  _LIBERTY="%{$fg[green]%}$"
+fi
+_USERNAME="$_USERNAME%{$reset_color%}@%m"
+_LIBERTY="$_LIBERTY%{$reset_color%}"
+
+
+get_space () {
+  local STR=$1$2
+  local zero='%([BSUbfksu]|([FB]|){*})'
+  local LENGTH=${#${(S%%)STR//$~zero/}} 
+  local SPACES=""
+  (( LENGTH = ${COLUMNS} - $LENGTH - 1))
+  
+  for i in {0..$LENGTH}
+    do
+      SPACES="$SPACES "
+    done
+
+  echo $SPACES
 }
 
-# Dir: current working directory
-prompt_dir() {
-  prompt_segment green $PRIMARY_FG ' %~ '
+_1LEFT="$_USERNAME $_PATH"
+_1RIGHT="[%*] "
+
+bureau_precmd () {
+  _1SPACES=`get_space $_1LEFT $_1RIGHT`
+  print 
+  print -rP "$_1LEFT$_1SPACES$_1RIGHT"
 }
 
-# Status:
-# - was there an error
-# - am I root
-# - are there background jobs?
-prompt_status() {
-  local symbols
-  symbols=()
-  [[ $RETVAL -ne 0 ]] && symbols+="%{%F{red}%}$CROSS"
-  [[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}$LIGHTNING"
-  [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}$GEAR"
+setopt prompt_subst
+PROMPT='> $_LIBERTY '
+RPROMPT='$(nvm_prompt_info) $(bureau_git_prompt)'
 
-  [[ -n "$symbols" ]] && prompt_segment $PRIMARY_FG default " $symbols "
-}
-
-## Main prompt
-prompt_agnoster_main() {
-  RETVAL=$?
-  CURRENT_BG='NONE'
-  prompt_time
-  prompt_status
-  prompt_context
-  prompt_dir
-  prompt_git
-  # prompt_virtualenv
-  prompt_end
-}
-
-prompt_agnoster_precmd() {
-  vcs_info
-  PROMPT='
-%{%f%b%k%}$(prompt_agnoster_main) 
-  %{%F{red}%}»%f '
-}
-
-prompt_agnoster_setup() {
-  autoload -Uz add-zsh-hook
-  autoload -Uz vcs_info
-
-  prompt_opts=(cr subst percent)
-
-  add-zsh-hook precmd prompt_agnoster_precmd
-
-  zstyle ':vcs_info:*' enable git
-  zstyle ':vcs_info:*' check-for-changes false
-  zstyle ':vcs_info:git*' formats '%b'
-  zstyle ':vcs_info:git*' actionformats '%b (%a)'
-}
-
-prompt_agnoster_setup "$@"
+autoload -U add-zsh-hook
+add-zsh-hook precmd bureau_precmd
