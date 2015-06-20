@@ -106,7 +106,8 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 # set up environment variables
 export DEV="$HOME/Development"
-export DOT="$DEV/git-repos/dotfiles/"
+export REPO="$DEV/git-repos"
+export DOT="$REPO/dotfiles/"
 export BIN="$HOME/bin"
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export EDITOR="vim"
