@@ -10,9 +10,21 @@ A compilation of all dot files used in my environment.
 * Tmux resurrect - https://github.com/tmux-plugins/tmux-resurrect
 * Cobalt2 Sublime Text theme - https://github.com/wesbos/cobalt2
 
+## Inspiration
+![alt tag](res/README.png)
+
 ## Notes:
-Needs the following python libraries:
-* psutil
-* powerline-status
+###Required
+
+* psutil: `pip install psutil`
+* powerline-status: `pip install powerline-status`
+
+###Font:
+
+* Droid Sans Mono - 14pt
+
+
+###To do:
+Write script to automate most of environment setup with dotfiles.
 
 
