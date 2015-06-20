@@ -96,7 +96,12 @@ zle -N zle-line-init
 bindkey '^T' autosuggest-toggle
 
 # set highlight colors
-export AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=15'
+# export AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=15' # white
+# export AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=35' # greenish
+# export AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=40' # green
+# export AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=yellow'
+export AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=250'
+
 # export AUTOSUGGESTION_HIGHLIGHT_CURSOR=0
 export AUTOSUGGESTION_ACCEPT_RIGHT_ARROW=1
 

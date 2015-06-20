@@ -8,6 +8,7 @@ A compilation of all dot files used in my environment.
 * Installing powerline plugins for vim, tmux, and shell - http://askubuntu.com/questions/283908/how-can-i-install-and-use-powerline-plugin
 * Setting up powerline (more complete) - http://blog.codefront.net/2013/10/27/installing-powerline-on-os-x-homebrew/
 * Tmux resurrect - https://github.com/tmux-plugins/tmux-resurrect
+* Cobalt2 Sublime Text theme - https://github.com/wesbos/cobalt2
 
 ## Notes:
 Needs the following python libraries:
