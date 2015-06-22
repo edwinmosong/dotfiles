@@ -53,6 +53,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:/Users/edwinmo/bin:/Applications/Postgres.app/Contents/Versions/9.3/bin/"
+export PATH=$PATH:/Users/emosong/bin
 
 export NODE_PATH="/usr/local/lib/node_modules"
 
@@ -84,7 +85,7 @@ export NODE_PATH="/usr/local/lib/node_modules"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # setup zsh-autosuggestions
-source ~/.zsh-autosuggestions/autosuggestions.zsh
+source ~/.zsh/zsh-autosuggestions/autosuggestions.zsh
 
 # enable autosuggestions manually
 zle-line-init() {
@@ -110,7 +111,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 
 # set up environment variables
-export DEV="$HOME/Development"
+export DEV="$HOME/Dev"
 export REPO="$DEV/git-repos"
 export DOT="$REPO/dotfiles/"
 export BIN="$HOME/bin"
@@ -119,3 +120,6 @@ export EDITOR="vim"
 
 # source tmuxinator
 source $BIN/tmuxinator.zsh
+
+# token for doing brew searches (so it doesn't lock me out from trying)
+export HOMEBREW_GITHUB_API_TOKEN=cfc8c5d2b179e01cd71bb47eb16589d3402a80d9
