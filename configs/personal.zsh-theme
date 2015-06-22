@@ -56,7 +56,6 @@ bureau_git_status () {
   if $(echo "$_INDEX" | grep '^## .*diverged' &> /dev/null); then
     _STATUS="$_STATUS$ZSH_THEME_GIT_PROMPT_DIVERGED"
   fi
-
   echo $_STATUS
 }
 
