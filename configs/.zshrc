@@ -53,6 +53,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:/Users/edwinmo/bin:/Applications/Postgres.app/Contents/Versions/9.3/bin/"
+export PATH=$PATH:/Users/emosong/bin
 
 export NODE_PATH="/usr/local/lib/node_modules"
 
@@ -83,11 +84,9 @@ export NODE_PATH="/usr/local/lib/node_modules"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
-# setup zsh-syntaxhighlighting
-source /Users/edwinmo/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # setup zsh-autosuggestions
-source /Users/edwinmo/.zsh/zsh-autosuggestions/autosuggestions.zsh
+source ~/.zsh/zsh-autosuggestions/autosuggestions.zsh
 
 # enable autosuggestions manually
 zle-line-init() {
@@ -113,7 +112,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 
 # set up environment variables
-export DEV="$HOME/Development"
+export DEV="$HOME/Dev"
 export REPO="$DEV/git-repos"
 export DOT="$REPO/dotfiles/"
 export BIN="$HOME/bin"
@@ -126,3 +125,7 @@ source $BIN/tmuxinator.zsh
 
 # term
 export TERM="xterm"
+
+# token for doing brew searches (so it doesn't lock me out from trying)
+export HOMEBREW_GITHUB_API_TOKEN=cfc8c5d2b179e01cd71bb47eb16589d3402a80d9
+
