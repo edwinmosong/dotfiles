@@ -84,6 +84,8 @@ export NODE_PATH="/usr/local/lib/node_modules"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # setup zsh-autosuggestions
 source ~/.zsh/zsh-autosuggestions/autosuggestions.zsh
 
@@ -124,4 +126,3 @@ source $BIN/tmuxinator.zsh
 # token for doing brew searches (so it doesn't lock me out from trying)
 export HOMEBREW_GITHUB_API_TOKEN=cfc8c5d2b179e01cd71bb47eb16589d3402a80d9
 
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
