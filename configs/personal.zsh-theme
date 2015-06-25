@@ -77,7 +77,8 @@ else
   _USERNAME="%{$fg_bold[white]%}%n"
   _LIBERTY="%{$fg[green]%}$"
 fi
-_USERNAME="$_USERNAME%{$reset_color%}@%m"
+# _USERNAME="$_USERNAME%{$reset_color%}@%m"
+_USERNAME="$_USERNAME%{$fg[green]%}@%m%{$reset_color%}"
 _LIBERTY="$_LIBERTY%{$reset_color%}"
 
 
@@ -97,7 +98,7 @@ get_space () {
 }
 
 _1LEFT="$_USERNAME $_PATH"
-_1RIGHT="[%*] "
+_1RIGHT="[%*]"
 
 bureau_precmd () {
   _1SPACES=`get_space $_1LEFT $_1RIGHT`
