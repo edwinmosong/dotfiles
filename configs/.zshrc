@@ -125,7 +125,6 @@ source $BIN/tmuxinator.zsh
 
 # term
 export TERM="xterm"
-
 # token for doing brew searches (so it doesn't lock me out from trying)
 export HOMEBREW_GITHUB_API_TOKEN=cfc8c5d2b179e01cd71bb47eb16589d3402a80d9
 
