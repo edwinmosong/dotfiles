@@ -83,8 +83,11 @@ export NODE_PATH="/usr/local/lib/node_modules"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+
+# setup zsh-syntaxhighlighting
+source /Users/edwinmo/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # setup zsh-autosuggestions
-source ~/.zsh-autosuggestions/autosuggestions.zsh
+source /Users/edwinmo/.zsh/zsh-autosuggestions/autosuggestions.zsh
 
 # enable autosuggestions manually
 zle-line-init() {
@@ -115,7 +118,11 @@ export REPO="$DEV/git-repos"
 export DOT="$REPO/dotfiles/"
 export BIN="$HOME/bin"
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:/Applications/PyCharm.app/Contents/MacOS" # Add pycharm
 export EDITOR="vim"
 
 # source tmuxinator
 source $BIN/tmuxinator.zsh
+
+# term
+export TERM="xterm"

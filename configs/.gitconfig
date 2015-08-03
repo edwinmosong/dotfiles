@@ -7,3 +7,8 @@
     cm = commit
     pom = push origin master
 
+#[diff]
+#	tool = opendiff
+#[difftool]
+#	prompt = false
+#

@@ -26,7 +26,7 @@ Plugin 'gmarik/Vundle.vim'
 " YOUR LIST OF PLUGINS GOES HERE LIKE THIS:
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
-Plugin 'gertjanreynaert/cobalt2-vim-theme'
+" Plugin 'gertjanreynaert/cobalt2-vim-theme'
 
 " add plugins before this
 call vundle#end()
@@ -48,17 +48,16 @@ if has("gui_running")
     set tabstop=4       " Force number of spaces for Tab
     highlight ColorColumn guibg=LemonChiffon3
     set colorcolumn=80
+    set expandtab	    " Use spaces instead of tabs
 endif
-" set colorcolumn=80
-highlight ColorColumn ctermbg=DarkGray
+highlight ColorColumn ctermbg=White
 set number  	    " Show line numbers
-" set textwidth=80    " Line wrap (number of cols)
 set showmatch       " Highlight matching brace
 set visualbell	    " Use visual bell (no beeping)
 set hlsearch	    " Highlight all search results
+set expandtab	    " Use spaces instead of tabs
 set smartcase	    " Enable smart-case search
 set autoindent	    " Auto-indent new lines
-set expandtab	    " Use spaces instead of tabs
 set shiftwidth=4    " Number of auto-indent spaces
 set smartindent	    " Enable smart-indent
 set smarttab	    " Enable smart-tabs
@@ -101,10 +100,4 @@ set clipboard=unnamed
 
 " Press Space to toggle highlighting on/off, and show current value.
 :noremap <Space> :set hlsearch! hlsearch?<CR>
-
-" set better highlighting colors for matchparen and search
-hi Search ctermfg=0 ctermbg=15
-hi MatchParen ctermfg=0 ctermbg=15
-" set better color for line numbers
-hi LineNr ctermfg=grey
 
