@@ -122,7 +122,11 @@ set splitbelow  " splits below
 set splitright  " splits right
 
 " Fold settings
-set foldlevel=0            " Unfolded by default
+set foldlevel=99            " Unfolded by default
 
 color wombat256mod
 set t_Co=256
+
+" Ropevim options
+let ropevim_vim_completion=1
+let ropevim_extended_complete=1
