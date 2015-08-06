@@ -22,10 +22,13 @@ Plugin 'gmarik/Vundle.vim'
 " to update the plugins run :PluginInstall! or :PluginUpdate
 " to delete a plugin remove it here and run :PluginClean
  
-
 " YOUR LIST OF PLUGINS GOES HERE LIKE THIS:
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
+"Plugin 'davidhalter/jedi-vim'
+Plugin 'klen/python-mode'
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/syntastic'
 " Plugin 'gertjanreynaert/cobalt2-vim-theme'
 
 " add plugins before this
@@ -34,6 +37,9 @@ call vundle#end()
 " now (after vundle finished) it is save to turn filetype plugins on
 filetype plugin indent on
 syntax on
+
+" Automatic reloading of .vimrc
+autocmd! bufwritepost .vimrc source %
 
 let mapleader=","
 if has("gui_running")
@@ -50,7 +56,9 @@ if has("gui_running")
     set colorcolumn=80
     set expandtab	    " Use spaces instead of tabs
 endif
-highlight ColorColumn ctermbg=White
+set colorcolumn=81
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
 set number  	    " Show line numbers
 set showmatch       " Highlight matching brace
 set visualbell	    " Use visual bell (no beeping)
@@ -101,3 +109,20 @@ set clipboard=unnamed
 " Press Space to toggle highlighting on/off, and show current value.
 :noremap <Space> :set hlsearch! hlsearch?<CR>
 
+" Indent blocks left or right
+vnoremap < <gv
+vnoremap > >gv
+
+" Splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+set splitbelow  " splits below
+set splitright  " splits right
+
+" Fold settings
+set foldlevel=0            " Unfolded by default
+
+color wombat256mod
+set t_Co=256
