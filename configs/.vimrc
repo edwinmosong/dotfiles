@@ -57,8 +57,8 @@ if has("gui_running")
     set expandtab	    " Use spaces instead of tabs
 endif
 set colorcolumn=81
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+" highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+" match OverLength /\%81v.\+/
 set number  	    " Show line numbers
 set showmatch       " Highlight matching brace
 set visualbell	    " Use visual bell (no beeping)

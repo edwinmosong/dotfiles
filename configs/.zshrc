@@ -124,5 +124,5 @@ export EDITOR="vim"
 # source tmuxinator
 source $BIN/tmuxinator.zsh
 
-# term
-export TERM="xterm"
+# term, fixes vim on tmux
+export TERM="xterm-256color"
