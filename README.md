@@ -9,6 +9,8 @@ A compilation of all dot files used in my environment.
 * Setting up powerline (more complete) - http://blog.codefront.net/2013/10/27/installing-powerline-on-os-x-homebrew/
 * Tmux resurrect - https://github.com/tmux-plugins/tmux-resurrect
 * Cobalt2 Sublime Text theme - https://github.com/wesbos/cobalt2
+* Reattach-to-user-namespace - actually copy and paste in tmux https://robots.thoughtbot.com/tmux-copy-paste-on-os-x-a-better-future
+
 
 ## Inspiration
 ![alt tag](res/README.png)

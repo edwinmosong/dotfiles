@@ -123,6 +123,7 @@ set splitright  " splits right
 
 " Fold settings
 set foldlevel=99            " Unfolded by default
+set foldmethod=syntax
 
 color wombat256mod
 set t_Co=256
