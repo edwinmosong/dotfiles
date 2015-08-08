@@ -25,8 +25,8 @@ Plugin 'gmarik/Vundle.vim'
 " YOUR LIST OF PLUGINS GOES HERE LIKE THIS:
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
-"Plugin 'davidhalter/jedi-vim'
-Plugin 'klen/python-mode'
+Plugin 'davidhalter/jedi-vim'
+" Plugin 'klen/python-mode' (too slow and buggy!)
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
 " Plugin 'gertjanreynaert/cobalt2-vim-theme'
