@@ -30,6 +30,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'klen/python-mode' " (too slow and buggy!)
 Plugin 'tpope/vim-fugitive'
 Plugin 'nathanaelkane/vim-indent-guides'
+" Plugin 'joeytwiddle/sexy_scroller.vim'
 " Plugin 'scrooloose/syntastic'
 " Plugin 'gertjanreynaert/cobalt2-vim-theme'
 
@@ -101,7 +102,7 @@ set matchpairs+=(:)
 set matchpairs+=[:]
 set matchpairs+={:}
 set mouse=a         " enable mouse functionality
-set foldlevel=2            " Fold all by default
+set foldlevel=1            " Fold all by default
 set foldmethod=syntax       " Fold by syntax
 set clipboard=unnamed " shares clipboard with OS X
 syntax on           " enable syntax hightlighting
@@ -142,3 +143,7 @@ let g:pymode_rope_autoimport = 0
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 set ts=4 sw=4 et
+
+" enable indentLine by default
+let g:indentLine_enabled = 1
+let g:indentLine_char = '┊'
