@@ -7,8 +7,10 @@
     cm = commit
     pom = push origin master
 
-#[diff]
-#	tool = opendiff
-#[difftool]
-#	prompt = false
-#
+[core]
+	excludesfile = /Users/edwinmo/.gitignore_global
+
+[diff]
+[difftool]
+	prompt = false
+[merge]

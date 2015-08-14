@@ -1,3 +1,4 @@
+"----------------------PLUGINS-----------------------"
 " vundle {{{1
 
 " needed to run vundle (but i want this anyways)
@@ -25,14 +26,16 @@ Plugin 'gmarik/Vundle.vim'
 " YOUR LIST OF PLUGINS GOES HERE LIKE THIS:
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
-Plugin 'davidhalter/jedi-vim'
-" Plugin 'klen/python-mode' (too slow and buggy!)
+" Plugin 'davidhalter/jedi-vim'
+Plugin 'klen/python-mode' " (too slow and buggy!)
 Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/syntastic'
+Plugin 'nathanaelkane/vim-indent-guides'
+" Plugin 'scrooloose/syntastic'
 " Plugin 'gertjanreynaert/cobalt2-vim-theme'
 
 " add plugins before this
 call vundle#end()
+"----------------------PLUGINS-----------------------"
 
 " now (after vundle finished) it is save to turn filetype plugins on
 filetype plugin indent on
@@ -42,23 +45,36 @@ syntax on
 autocmd! bufwritepost .vimrc source %
 
 let mapleader=","
+" gvim, colorschemes arranged in good to best.
 if has("gui_running")
-    syntax on
-    set hlsearch
-    colorscheme slate
+    colorscheme Benokai
+    colorscheme flattown
+    colorscheme kalisi
+    colorscheme luna
     set bs=2
     set ai
-    set ruler
-    set guifont=Monaco\ for\ Powerline:h24
-    set softtabstop=4   " Number of spaces per Tab
-    set tabstop=4       " Force number of spaces for Tab
     highlight ColorColumn guibg=LemonChiffon3
-    set colorcolumn=80
-    set expandtab	    " Use spaces instead of tabs
+    set antialias
+else
+    color wombat256mod
+    colorscheme flattown
+    colorscheme luna
+    set t_Co=256
 endif
+
+colorscheme badwolf
+
+let g:enable_bold_font = 1
+
+" Powerline settings
+" set guifont=Monaco\ for\ Powerline:h13
+set guifont=InputMono\ ExLight:h13
+source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
+set background=dark
+
+set laststatus=2
+let g:Powerline_symbols = 'fancy'
 set colorcolumn=81
-" highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-" match OverLength /\%81v.\+/
 set number  	    " Show line numbers
 set showmatch       " Highlight matching brace
 set visualbell	    " Use visual bell (no beeping)
@@ -85,8 +101,12 @@ set matchpairs+=(:)
 set matchpairs+=[:]
 set matchpairs+={:}
 set mouse=a         " enable mouse functionality
+set foldlevel=2            " Fold all by default
+set foldmethod=syntax       " Fold by syntax
+set clipboard=unnamed " shares clipboard with OS X
 syntax on           " enable syntax hightlighting
 
+"----------------------FUNCTIONS.MISC-----------------------"
 " binds \ to finding merge conflict!
 function! FindConflict()
     try
@@ -95,16 +115,6 @@ function! FindConflict()
     endtry
 endfunction
 nnoremap \ :call FindConflict()<CR>
-
-" Powerline settings
-set guifont=Monaco\ for\ Powerline:h24
-source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
-" Always show statusline
-set laststatus=2
-let g:Powerline_symbols = 'fancy'
-
-" Uses OS X clipboard
-set clipboard=unnamed
 
 " Press Space to toggle highlighting on/off, and show current value.
 :noremap <Space> :set hlsearch! hlsearch?<CR>
@@ -121,13 +131,14 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow  " splits below
 set splitright  " splits right
 
-" Fold settings
-set foldlevel=99            " Unfolded by default
-set foldmethod=syntax
-
-color wombat256mod
-set t_Co=256
-
 " Ropevim options
 let ropevim_vim_completion=1
 let ropevim_extended_complete=1
+
+" Pymode hanging when autocomplete workaround...
+let g:pymode_rope_autoimport = 0
+
+" indent guides
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+set ts=4 sw=4 et
