@@ -11,6 +11,8 @@
 	excludesfile = /Users/edwinmo/.gitignore_global
 
 [diff]
+    tool = opendiff
 [difftool]
 	prompt = false
 [merge]
+    tool = opendiff

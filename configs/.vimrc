@@ -26,12 +26,13 @@ Plugin 'gmarik/Vundle.vim'
 " YOUR LIST OF PLUGINS GOES HERE LIKE THIS:
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
-" Plugin 'davidhalter/jedi-vim'
-Plugin 'klen/python-mode' " (too slow and buggy!)
+Plugin 'davidhalter/jedi-vim'
+" Plugin 'klen/python-mode' " (too slow and buggy!)
 Plugin 'tpope/vim-fugitive'
 Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'airblade/vim-gitgutter'
 " Plugin 'joeytwiddle/sexy_scroller.vim'
-" Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 " Plugin 'gertjanreynaert/cobalt2-vim-theme'
 
 " add plugins before this
@@ -155,3 +156,24 @@ if &term =~ '^screen'
     execute "set <xRight>=\e[1;*C"
     execute "set <xLeft>=\e[1;*D"
 endif
+
+" Color Changes
+" .....................................
+hi LineNr                    ctermfg=green   ctermbg=black
+hi NERDTreeCWD               ctermfg=black
+hi NERDTreeLink              ctermfg=cyan
+hi NERDTreeExecFile          ctermfg=green
+hi SyntasticStyleWarningSign ctermfg=yellow  ctermbg=black
+hi SyntasticStyleErrorSign   ctermfg=red     ctermbg=black
+hi SyntasticWarningSign      ctermfg=yellow  ctermbg=black
+hi SyntasticErrorSign        ctermfg=red     ctermbg=black
+hi SignColumn                ctermbg=black
+hi GitGutterAdd              ctermfg=green   ctermbg=black
+hi GitGutterChange           ctermfg=yellow  ctermbg=black
+hi GitGutterDelete           ctermfg=red     ctermbg=black
+hi GitGutterChangeDelete     ctermfg=blue    ctermbg=black
+hi vertsplit                 ctermfg=green   ctermbg=green
+hi clear SignColumn
+
+" Turns off docstring at the bottom for jedi-vim
+autocmd FileType python setlocal completeopt-=preview
