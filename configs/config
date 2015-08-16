@@ -1,14 +1,2 @@
-Host ieng9.ucsd.edu:
-    IdentityFile ~/.ssh/ieng/id_rsa
-
-Host ieng6.ucsd.edu:
-    IdentityFile ~/.ssh/ieng/id_rsa
-
-Host github.com:
-    IdentityFile ~/.ssh/git/id_rsa
-
-Host bitbucket.org:
-    IdentityFile ~/.ssh/git/id_rsa
-
 Host *:
-    IdentityFile ~/.ssh/default/id_rsa
+    IdentityFile ~/.ssh/id_rsa

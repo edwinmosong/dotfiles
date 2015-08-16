@@ -57,9 +57,9 @@ if has("gui_running")
     highlight ColorColumn guibg=LemonChiffon3
     set antialias
 else
-    color wombat256mod
-    colorscheme flattown
-    colorscheme luna
+    " color wombat256mod
+    " colorscheme flattown
+    " colorscheme luna
     set t_Co=256
 endif
 
@@ -147,3 +147,11 @@ set ts=4 sw=4 et
 " enable indentLine by default
 let g:indentLine_enabled = 1
 let g:indentLine_char = '┊'
+
+if &term =~ '^screen'
+    " tmux will send xterm-style keys when its xterm-keys option is on
+    execute "set <xUp>=\e[1;*A"
+    execute "set <xDown>=\e[1;*B"
+    execute "set <xRight>=\e[1;*C"
+    execute "set <xLeft>=\e[1;*D"
+endif

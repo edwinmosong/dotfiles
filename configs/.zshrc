@@ -6,7 +6,9 @@ export ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="dpoggi"
-ZSH_THEME="personal"
+#ZSH_THEME="personal"
+#ZSH_THEME="steeef"
+ZSH_THEME="xxf"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -46,7 +48,7 @@ ZSH_THEME="personal"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ssh-agent zsh-syntax-highlighting)
+plugins=(git ssh-agent zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -83,12 +85,6 @@ export NODE_PATH="/usr/local/lib/node_modules"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
-# setup zsh-syntaxhighlighting
-source /Users/edwinmo/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# setup zsh-autosuggestions
-source /Users/edwinmo/.zsh/zsh-autosuggestions/autosuggestions.zsh
-
 # enable autosuggestions manually
 zle-line-init() {
     zle autosuggest-start
@@ -99,10 +95,6 @@ zle -N zle-line-init
 bindkey '^T' autosuggest-toggle
 
 # set highlight colors
-# export AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=15' # white
-# export AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=35' # greenish
-# export AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=40' # green
-# export AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=yellow'
 export AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=250'
 
 # export AUTOSUGGESTION_HIGHLIGHT_CURSOR=0
@@ -125,4 +117,4 @@ export EDITOR="vim"
 source $BIN/tmuxinator.zsh
 
 # term, fixes vim on tmux
-export TERM="xterm-256color"
+export TERM="screen-256color"
