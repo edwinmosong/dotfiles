@@ -107,6 +107,7 @@ set foldlevel=1            " Fold all by default
 set foldmethod=syntax       " Fold by syntax
 set clipboard=unnamed " shares clipboard with OS X
 syntax on           " enable syntax hightlighting
+set cursorline      " enable cursorline
 
 "----------------------FUNCTIONS.MISC-----------------------"
 " binds \ to finding merge conflict!
@@ -174,6 +175,7 @@ hi GitGutterDelete           ctermfg=red     ctermbg=black
 hi GitGutterChangeDelete     ctermfg=blue    ctermbg=black
 hi vertsplit                 ctermfg=green   ctermbg=green
 hi clear SignColumn
+hi CursorLine cterm=NONE ctermbg=black ctermfg=NONE guibg=darkred guifg=NONE
 
 " Turns off docstring at the bottom for jedi-vim
 autocmd FileType python setlocal completeopt-=preview
