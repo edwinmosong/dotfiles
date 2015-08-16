@@ -8,7 +8,12 @@ export ZSH=$HOME/.oh-my-zsh
 #ZSH_THEME="dpoggi"
 #ZSH_THEME="personal"
 #ZSH_THEME="steeef"
-ZSH_THEME="xxf"
+#ZSH_THEME="xxf"
+#ZSH_THEME="avit"
+#ZSH_THEME="terminalparty"
+# ZSH_THEME="jnrowe"
+# ZSH_THEME="mh"
+ZSH_THEME="personal"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -118,3 +123,6 @@ source $BIN/tmuxinator.zsh
 
 # term, fixes vim on tmux
 export TERM="screen-256color"
+
+# use macvim!
+alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
