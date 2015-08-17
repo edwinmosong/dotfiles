@@ -8,8 +8,7 @@
     pom = push origin master
 
 [core]
-	excludesfile = /Users/edwinmo/.gitignore_global
-
+	excludesfile = /Users/emosong/.gitignore_global
 [diff]
 	tool = vimdiff
 [difftool]

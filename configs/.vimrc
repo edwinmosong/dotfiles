@@ -33,7 +33,6 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'airblade/vim-gitgutter'
 " Plugin 'joeytwiddle/sexy_scroller.vim'
 Plugin 'scrooloose/syntastic'
-" Plugin 'gertjanreynaert/cobalt2-vim-theme'
 
 " add plugins before this
 call vundle#end()
@@ -49,10 +48,10 @@ autocmd! bufwritepost .vimrc source %
 let mapleader=","
 " gvim, colorschemes arranged in good to best.
 if has("gui_running")
-    colorscheme Benokai
-    colorscheme flattown
-    colorscheme kalisi
-    colorscheme luna
+    " colorscheme Benokai
+    " colorscheme flattown
+    " colorscheme kalisi
+    " colorscheme luna
     set bs=2
     set ai
     highlight ColorColumn guibg=LemonChiffon3
@@ -135,6 +134,12 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow  " splits below
 set splitright  " splits right
 
+" Fold settings
+set foldlevel=1            " Unfolded by default
+set foldmethod=syntax
+
+set t_Co=256
+
 " Ropevim options
 let ropevim_vim_completion=1
 let ropevim_extended_complete=1
@@ -151,8 +156,12 @@ set ts=4 sw=4 et
 let g:indentLine_enabled = 1
 let g:indentLine_char = '┊'
 
+" theme only works when term is 'screen'
+set term=screen-256color
+
+" and we handle the shift+arrowkeys in the following:
 if &term =~ '^screen'
-    " tmux will send xterm-style keys when its xterm-keys option is on
+    " tmux will send xterm-style keys when xterm-keys is on
     execute "set <xUp>=\e[1;*A"
     execute "set <xDown>=\e[1;*B"
     execute "set <xRight>=\e[1;*C"
