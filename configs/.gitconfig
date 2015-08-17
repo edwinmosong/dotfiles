@@ -11,8 +11,8 @@
 	excludesfile = /Users/edwinmo/.gitignore_global
 
 [diff]
-    tool = opendiff
+	tool = vimdiff
 [difftool]
 	prompt = false
 [merge]
-    tool = opendiff
+    tool = vimdiff

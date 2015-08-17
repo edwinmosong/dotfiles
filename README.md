@@ -15,6 +15,21 @@ A compilation of all dot files used in my environment.
 ## Inspiration
 ![alt tag](res/README.png)
 
+## Current Workspace
+![alt tag](res/workspace.png)
+
+In picture:
+* Bunch of vim plugins (NERDTree, syntastic, jedi-vim, etc. Found in .vimrc)
+* Neutron iterm2 theme
+* iterm2 nightly build with dark tab bar and no title bar.
+* tty-clock -scC 1
+* htop --sort-key CPU -u edwinmo
+* cursorline activated for vim
+* vim colorscheme badwolf
+* tmux with powerline
+* vim with powerline
+
+
 ## Notes:
 ###Required
 
@@ -23,7 +38,8 @@ A compilation of all dot files used in my environment.
 
 ###Font:
 
-* Droid Sans Mono - 14pt
+* Menlo - 12pt
+* Source Code Pro for Powerline - 12pt
 
 
 ###To do:

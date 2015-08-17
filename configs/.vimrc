@@ -108,6 +108,7 @@ set foldmethod=syntax       " Fold by syntax
 set clipboard=unnamed " shares clipboard with OS X
 syntax on           " enable syntax hightlighting
 set cursorline      " enable cursorline
+set nowrap          " disable wrapping
 
 "----------------------FUNCTIONS.MISC-----------------------"
 " binds \ to finding merge conflict!
