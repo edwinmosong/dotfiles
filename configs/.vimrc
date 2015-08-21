@@ -151,6 +151,12 @@ set ts=4 sw=4 et
 " enable indentLine by default
 let g:indentLine_enabled = 1
 let g:indentLine_char = '┊'
+let g:indent_guides_enable_on_vim_startup = 1
+
+" set custom indent colors
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=lightgrey
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
 
 if &term =~ '^screen'
     " tmux will send xterm-style keys when its xterm-keys option is on
@@ -177,7 +183,7 @@ hi GitGutterDelete           ctermfg=red     ctermbg=black
 hi GitGutterChangeDelete     ctermfg=blue    ctermbg=black
 hi vertsplit                 ctermfg=green   ctermbg=green
 hi clear SignColumn
-hi CursorLine cterm=NONE ctermbg=black ctermfg=NONE guibg=darkred guifg=NONE
+hi CursorLine cterm=NONE ctermbg=238 ctermfg=NONE guibg=darkred guifg=NONE
 
 " Turns off docstring at the bottom for jedi-vim
 autocmd FileType python setlocal completeopt-=preview
