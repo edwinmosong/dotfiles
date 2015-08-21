@@ -26,13 +26,13 @@ Plugin 'gmarik/Vundle.vim'
 " YOUR LIST OF PLUGINS GOES HERE LIKE THIS:
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
-Plugin 'davidhalter/jedi-vim'
-" Plugin 'klen/python-mode' " (too slow and buggy!)
+" Plugin 'davidhalter/jedi-vim'
+Plugin 'klen/python-mode' " (too slow and buggy!)
 Plugin 'tpope/vim-fugitive'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'airblade/vim-gitgutter'
 " Plugin 'joeytwiddle/sexy_scroller.vim'
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
 " Plugin 'gertjanreynaert/cobalt2-vim-theme'
 
 " add plugins before this
@@ -65,6 +65,7 @@ else
 endif
 
 colorscheme badwolf
+colorscheme ronakg
 
 let g:enable_bold_font = 1
 
