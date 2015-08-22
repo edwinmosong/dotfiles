@@ -118,9 +118,6 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="$PATH:/Applications/PyCharm.app/Contents/MacOS" # Add pycharm
 export EDITOR="vim"
 
-# source tmuxinator
-source $BIN/tmuxinator.zsh
-
 # term, fixes vim on tmux
 export TERM="screen-256color"
 
