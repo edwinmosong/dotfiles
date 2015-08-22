@@ -110,6 +110,8 @@ set clipboard=unnamed " shares clipboard with OS X
 syntax on           " enable syntax hightlighting
 set cursorline      " enable cursorline
 set nowrap          " disable wrapping
+set list            " enable listchars
+set listchars=tab:▸…,eol:¬,trail:•
 
 "----------------------FUNCTIONS.MISC-----------------------"
 " binds \ to finding merge conflict!
@@ -156,7 +158,7 @@ let g:indent_guides_enable_on_vim_startup = 1
 " set custom indent colors
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=lightgrey
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=lightgrey
 
 if &term =~ '^screen'
     " tmux will send xterm-style keys when its xterm-keys option is on
@@ -184,6 +186,7 @@ hi GitGutterChangeDelete     ctermfg=blue    ctermbg=black
 hi vertsplit                 ctermfg=green   ctermbg=green
 hi clear SignColumn
 hi CursorLine cterm=NONE ctermbg=238 ctermfg=NONE guibg=darkred guifg=NONE
+hi NonText                   ctermfg=white   ctermbg=None
 
 " Turns off docstring at the bottom for jedi-vim
 autocmd FileType python setlocal completeopt-=preview
