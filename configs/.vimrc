@@ -187,6 +187,7 @@ hi vertsplit                 ctermfg=green   ctermbg=green
 hi clear SignColumn
 hi CursorLine cterm=NONE ctermbg=238 ctermfg=NONE guibg=darkred guifg=NONE
 hi NonText                   ctermfg=white   ctermbg=None
+hi ColorColumn               ctermbg=darkred
 
 " Turns off docstring at the bottom for jedi-vim
 autocmd FileType python setlocal completeopt-=preview
