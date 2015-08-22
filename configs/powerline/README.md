@@ -1,0 +1,1 @@
+# Powerline settings per app
