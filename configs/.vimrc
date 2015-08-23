@@ -12,6 +12,9 @@ syntax off
 " set the runtime path for vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 
+" set the runtime path for fzf
+set rtp+=~/.fzf
+
 " start vundle environment
 call vundle#begin()
 
@@ -25,7 +28,7 @@ Plugin 'gmarik/Vundle.vim'
  
 " YOUR LIST OF PLUGINS GOES HERE LIKE THIS:
 Plugin 'scrooloose/nerdtree'
-Plugin 'kien/ctrlp.vim'
+" Plugin 'kien/ctrlp.vim' " replaced by fzf
 " Plugin 'davidhalter/jedi-vim'
 Plugin 'klen/python-mode' " (too slow and buggy!)
 Plugin 'tpope/vim-fugitive'
@@ -110,7 +113,7 @@ set clipboard=unnamed " shares clipboard with OS X
 syntax on           " enable syntax hightlighting
 set cursorline      " enable cursorline
 set nowrap          " disable wrapping
-set list            " enable listchars
+set nolist          " disable listchars
 set listchars=tab:▸…,eol:¬,trail:•
 
 "----------------------FUNCTIONS.MISC-----------------------"

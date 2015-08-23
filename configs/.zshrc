@@ -53,7 +53,7 @@ ZSH_THEME="personal"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ssh-agent zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git ssh-agent zsh-syntax-highlighting )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -90,21 +90,6 @@ export NODE_PATH="/usr/local/lib/node_modules"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# enable autosuggestions manually
-zle-line-init() {
-    zle autosuggest-start
-}
-zle -N zle-line-init
-
-# use ctrl+t to toggle autosuggestions
-bindkey '^T' autosuggest-toggle
-
-# set highlight colors
-export AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=250'
-
-# export AUTOSUGGESTION_HIGHLIGHT_CURSOR=0
-export AUTOSUGGESTION_ACCEPT_RIGHT_ARROW=1
-
 # setup virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
@@ -123,3 +108,38 @@ export TERM="screen-256color"
 
 # use macvim!
 alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# fzf-functions
+# taken from https://www.reddit.com/r/vim/comments/3f0zbg/psa_if_youre_using_ctrlp_use_this_maintained_fork/cto6285
+export FZF_DEFAULT_OPTS='-m'
+
+fe() {
+    # fe - Open the selected files with the default editor
+    local files=$(fzf-tmux --query="$1" --select-1 --exit-0 | sed -e "s/\(.*\)/\'\1\'/")
+    local command="${EDITOR:-vim} -p $files"
+    [ -n "$files" ] && eval $command
+}
+
+fd() {
+    # fd - cd to selected directory
+    local dir
+    dir=$(find ${1:-*} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf-tmux +m) &&
+    cd "$dir"
+}
+
+fh() {
+    # fh - repeat history
+    eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf-tmux +s --tac | sed 's/ *[0-9]* *//')
+}
+
+fkill() {
+    # fkill - kill process
+    pid=$(ps -ef | sed 1d | fzf-tmux -m | awk '{print $2}')
+    if [ "x$pid" != "x" ]
+    then
+        kill -${1:-9} $pid
+    fi
+}
+
