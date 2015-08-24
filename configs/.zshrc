@@ -91,6 +91,9 @@ export NODE_PATH="/usr/local/lib/node_modules"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Load zsh-autosuggestions.
+source ~/.oh-my-zsh/plugins/zsh-autosuggestions/autosuggestions.zsh
+
 # enable autosuggestions manually
 zle-line-init() {
     zle autosuggest-start
