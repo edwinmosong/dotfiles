@@ -34,6 +34,7 @@ Plugin 'klen/python-mode' " (too slow and buggy!)
 Plugin 'tpope/vim-fugitive'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 " Plugin 'joeytwiddle/sexy_scroller.vim'
 " Plugin 'scrooloose/syntastic'
 " Plugin 'gertjanreynaert/cobalt2-vim-theme'
@@ -52,30 +53,24 @@ autocmd! bufwritepost .vimrc source %
 let mapleader=","
 " gvim, colorschemes arranged in good to best.
 if has("gui_running")
-    colorscheme Benokai
-    colorscheme flattown
-    colorscheme kalisi
-    colorscheme luna
     set bs=2
     set ai
     highlight ColorColumn guibg=LemonChiffon3
     set antialias
 else
-    " color wombat256mod
-    " colorscheme flattown
-    " colorscheme luna
     set t_Co=256
 endif
 
-colorscheme badwolf
-colorscheme ronakg
+" colorscheme ronakg
+colorscheme molokai
+" colorscheme seoul256
 
 let g:enable_bold_font = 1
 
 " Powerline settings
 " set guifont=Monaco\ for\ Powerline:h13
 set guifont=InputMono\ ExLight:h13
-source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
+source /usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/plugin/powerline.vim
 set background=dark
 
 set laststatus=2
@@ -109,12 +104,15 @@ set matchpairs+={:}
 set mouse=a         " enable mouse functionality
 set foldlevel=1            " Fold all by default
 set foldmethod=syntax       " Fold by syntax
-set clipboard=unnamed " shares clipboard with OS X
+set clipboard=unnamedplus " shares clipboard with OS X
 syntax on           " enable syntax hightlighting
 set cursorline      " enable cursorline
 set nowrap          " disable wrapping
 set nolist          " disable listchars
 set listchars=tab:▸…,eol:¬,trail:•
+set relativenumber  " turn on relative numbers
+set lazyredraw
+set ttyfast
 
 "----------------------FUNCTIONS.MISC-----------------------"
 " binds \ to finding merge conflict!
@@ -173,24 +171,24 @@ endif
 
 " Color Changes
 " .....................................
-hi LineNr                    ctermfg=green   ctermbg=black
-hi NERDTreeCWD               ctermfg=black
-hi NERDTreeLink              ctermfg=cyan
-hi NERDTreeExecFile          ctermfg=green
-hi SyntasticStyleWarningSign ctermfg=yellow  ctermbg=black
-hi SyntasticStyleErrorSign   ctermfg=red     ctermbg=black
-hi SyntasticWarningSign      ctermfg=yellow  ctermbg=black
-hi SyntasticErrorSign        ctermfg=red     ctermbg=black
-hi SignColumn                ctermbg=black
-hi GitGutterAdd              ctermfg=green   ctermbg=black
-hi GitGutterChange           ctermfg=yellow  ctermbg=black
-hi GitGutterDelete           ctermfg=red     ctermbg=black
-hi GitGutterChangeDelete     ctermfg=blue    ctermbg=black
-hi vertsplit                 ctermfg=green   ctermbg=green
-hi clear SignColumn
-hi CursorLine cterm=NONE ctermbg=238 ctermfg=NONE guibg=darkred guifg=NONE
-hi NonText                   ctermfg=white   ctermbg=None
-hi ColorColumn               ctermbg=darkred
+" hi LineNr                    ctermfg=green   ctermbg=black
+" hi NERDTreeCWD               ctermfg=black
+" hi NERDTreeLink              ctermfg=cyan
+" hi NERDTreeExecFile          ctermfg=green
+" hi SyntasticStyleWarningSign ctermfg=yellow  ctermbg=black
+" hi SyntasticStyleErrorSign   ctermfg=red     ctermbg=black
+" hi SyntasticWarningSign      ctermfg=yellow  ctermbg=black
+" hi SyntasticErrorSign        ctermfg=red     ctermbg=black
+" hi SignColumn                ctermbg=black
+" hi GitGutterAdd              ctermfg=green   ctermbg=black
+" hi GitGutterChange           ctermfg=yellow  ctermbg=black
+" hi GitGutterDelete           ctermfg=red     ctermbg=black
+" hi GitGutterChangeDelete     ctermfg=blue    ctermbg=black
+" hi vertsplit                 ctermfg=green   ctermbg=green
+" hi clear SignColumn
+" hi CursorLine cterm=NONE ctermbg=238 ctermfg=NONE guibg=darkred guifg=NONE
+" hi NonText                   ctermfg=white   ctermbg=None
+" hi ColorColumn               ctermbg=darkred
 
 " Turns off docstring at the bottom for jedi-vim
 autocmd FileType python setlocal completeopt-=preview

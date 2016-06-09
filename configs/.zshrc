@@ -104,10 +104,7 @@ export PATH="$PATH:/Applications/PyCharm.app/Contents/MacOS" # Add pycharm
 export EDITOR="vim"
 
 # term, fixes vim on tmux
-export TERM="screen-256color"
-
-# use macvim!
-alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+export TERM="xterm-256color"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -142,4 +139,4 @@ fkill() {
         kill -${1:-9} $pid
     fi
 }
-
+xrandr --output DP-4 --mode 2560x1440 --rate 144.00
