@@ -100,14 +100,10 @@ export REPO="$DEV/git-repos"
 export DOT="$REPO/dotfiles/"
 export BIN="$HOME/bin"
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-export PATH="$PATH:/Applications/PyCharm.app/Contents/MacOS" # Add pycharm
 export EDITOR="vim"
 
 # term, fixes vim on tmux
-export TERM="screen-256color"
-
-# use macvim!
-alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+export TERM="xterm-256color"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -143,3 +139,20 @@ fkill() {
     fi
 }
 
+
+# Run 1pass if not currently running.
+onepasspid=`ps aux | grep 1pass | grep -v grep`
+if [ -z "$onepasspid" ]
+then
+    1pass &> /dev/null &
+fi
+
+# Run imwheel if not currently running.
+imwheelpid=`ps aux | grep imwheel | grep -v grep`
+if [ -z "$imwheelpid" ]
+then
+    imwheel -b "4 5"
+fi
+
+# Change the refresh rate on gsync scree
+xrandr --output DP-4 --mode 2560x1440 --rate 143.96
