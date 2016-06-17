@@ -147,12 +147,5 @@ then
     1pass &> /dev/null &
 fi
 
-# Run imwheel if not currently running.
-imwheelpid=`ps aux | grep imwheel | grep -v grep`
-if [ -z "$imwheelpid" ]
-then
-    imwheel -b "4 5"
-fi
-
 # Change the refresh rate on gsync scree
 xrandr --output DP-4 --mode 2560x1440 --rate 143.96
