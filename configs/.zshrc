@@ -59,7 +59,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:/Users/edwinmo/bin:/Applications/Postgres.app/Contents/Versions/9.3/bin/"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:/usr/local/android-studio/bin"
 
 export NODE_PATH="/usr/local/lib/node_modules"
 
@@ -101,6 +101,7 @@ export DOT="$REPO/dotfiles/"
 export BIN="$HOME/bin"
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export EDITOR="vim"
+export PATH="$PATH:/home/edwinmo/bin/"
 
 # term, fixes vim on tmux
 export TERM="xterm-256color"
@@ -148,4 +149,12 @@ then
 fi
 
 # Change the refresh rate on gsync scree
-xrandr --output DP-4 --mode 2560x1440 --rate 143.96
+xrandr --output DP-0 --mode 2560x1440 --rate 143.96
+
+if [ -z `pgrep 1pass` ]; then
+    echo "Starting 1pass"
+    /home/edwinmo/Development/git-repos/1pass &
+fi
+
+xset m 00
+source ~/.secrets/aws

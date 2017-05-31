@@ -28,16 +28,12 @@ Plugin 'gmarik/Vundle.vim'
  
 " YOUR LIST OF PLUGINS GOES HERE LIKE THIS:
 Plugin 'scrooloose/nerdtree'
-" Plugin 'kien/ctrlp.vim' " replaced by fzf
-" Plugin 'davidhalter/jedi-vim'
+Plugin 'davidhalter/jedi-vim'
 Plugin 'klen/python-mode' " (too slow and buggy!)
 Plugin 'tpope/vim-fugitive'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'jeffkreeftmeijer/vim-numbertoggle'
-" Plugin 'joeytwiddle/sexy_scroller.vim'
-" Plugin 'scrooloose/syntastic'
-" Plugin 'gertjanreynaert/cobalt2-vim-theme'
+Plugin 'tpope/vim-commentary'
 
 " add plugins before this
 call vundle#end()
@@ -61,7 +57,9 @@ else
     set t_Co=256
 endif
 
-colorscheme seoul256
+" colorscheme herald
+colorscheme molokai
+colorscheme brogrammer
 
 let g:enable_bold_font = 1
 
@@ -102,7 +100,7 @@ set matchpairs+={:}
 set mouse=a         " enable mouse functionality
 set foldlevel=1            " Fold all by default
 set foldmethod=syntax       " Fold by syntax
-set clipboard=unnamed " shares clipboard with OS X
+set clipboard=unnamedplus " shares clipboard with OS X
 syntax on           " enable syntax hightlighting
 set cursorline      " enable cursorline
 set nowrap          " disable wrapping
@@ -135,10 +133,8 @@ set splitbelow  " splits below
 set splitright  " splits right
 
 " Ropevim options
-let ropevim_vim_completion=1
-let ropevim_extended_complete=1
-
-" Pymode hanging when autocomplete workaround...
+let ropevim_vim_completion=0
+let ropevim_extended_complete=0
 let g:pymode_rope_autoimport = 0
 
 " indent guides
@@ -166,25 +162,26 @@ endif
 
 " Color Changes
 " .....................................
-hi LineNr                    ctermfg=green   ctermbg=black
-hi NERDTreeCWD               ctermfg=black
-hi NERDTreeLink              ctermfg=cyan
-hi NERDTreeExecFile          ctermfg=green
-hi SyntasticStyleWarningSign ctermfg=yellow  ctermbg=black
-hi SyntasticStyleErrorSign   ctermfg=red     ctermbg=black
-hi SyntasticWarningSign      ctermfg=yellow  ctermbg=black
-hi SyntasticErrorSign        ctermfg=red     ctermbg=black
-hi SignColumn                ctermbg=black
-hi GitGutterAdd              ctermfg=green   ctermbg=black
-hi GitGutterChange           ctermfg=yellow  ctermbg=black
-hi GitGutterDelete           ctermfg=red     ctermbg=black
-hi GitGutterChangeDelete     ctermfg=blue    ctermbg=black
+hi LineNr                    ctermfg=green   ctermbg=none
+" hi NERDTreeCWD               ctermfg=black
+" hi NERDTreeLink              ctermfg=cyan
+" hi NERDTreeExecFile          ctermfg=green
+hi SyntasticStyleWarningSign ctermfg=yellow  ctermbg=none
+hi SyntasticStyleErrorSign   ctermfg=red     ctermbg=none
+hi SyntasticWarningSign      ctermfg=yellow  ctermbg=none
+hi SyntasticErrorSign        ctermfg=red     ctermbg=none
+hi SignColumn                ctermbg=none
+hi GitGutterAdd              ctermfg=green   ctermbg=none
+hi GitGutterChange           ctermfg=yellow  ctermbg=none
+hi GitGutterDelete           ctermfg=red     ctermbg=none
+hi GitGutterChangeDelete     ctermfg=blue    ctermbg=none
 hi vertsplit                 ctermfg=green   ctermbg=green
 hi clear SignColumn
-hi CursorLine cterm=NONE ctermbg=238 ctermfg=NONE guibg=darkred guifg=NONE
-hi NonText                   ctermfg=white   ctermbg=None
-hi ColorColumn               ctermbg=darkred
-hi Normal                    ctermbg=none
+" hi CursorLine cterm=NONE ctermbg=238 ctermfg=NONE guibg=darkred guifg=NONE
+hi CursorLine cterm=NONE ctermbg=black ctermfg=NONE
+" hi NonText                   ctermfg=white   ctermbg=None
+" hi ColorColumn               ctermbg=darkred
+hi Normal                    ctermbg=none ctermfg=none
 
 " Turns off docstring at the bottom for jedi-vim
 autocmd FileType python setlocal completeopt-=preview

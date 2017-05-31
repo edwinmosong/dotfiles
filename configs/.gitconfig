@@ -1,6 +1,6 @@
 [user]
-    name = Edwin Mo Song
-    email = edwin.mo@live.com
+	name = Edwin Mo
+	email = edwin.mo@live.com
 
 [alias]
     st = status
@@ -8,7 +8,7 @@
     pom = push origin master
 
 [core]
-	excludesfile = /Users/edwinmo/.gitignore_global
+	excludesfile = /home/edwinmo/.gitignore_global
 
 [diff]
 	tool = vimdiff
