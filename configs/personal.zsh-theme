@@ -78,3 +78,5 @@ bureau_git_prompt () {
 PROMPT='${ret_status}%{$fg[blue]%}${PROMPT_HOST}%{$fg_bold[green]%}%p \
 %{$fg_bold[yellow]%}%30<...<%~%<<%{$reset_color%} \
 $(bureau_git_prompt)%{$reset_color%} ▶ '
+
+RPROMPT=%*
