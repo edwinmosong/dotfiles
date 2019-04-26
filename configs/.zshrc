@@ -5,49 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-#ZSH_THEME="dpoggi"
-#ZSH_THEME="personal"
-#ZSH_THEME="steeef"
-#ZSH_THEME="xxf"
-#ZSH_THEME="avit"
-#ZSH_THEME="terminalparty"
-# ZSH_THEME="jnrowe"
-# ZSH_THEME="mh"
 ZSH_THEME="personal"
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -59,37 +17,15 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:/Users/edwinmo/bin:/Applications/Postgres.app/Contents/Versions/9.3/bin/"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:/Users/edwinmo/bin:/Applications/Postgres.app/Contents/Versions/9.3/bin/:/Users/emsong/.scripts/:/Users/emsong/bin/"
 
 export NODE_PATH="/usr/local/lib/node_modules"
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# ALIAS
+# alias vim="/usr/local/bin/mvim -v"
+alias k="kubectl"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
+# EXPORTS
 # setup virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
@@ -98,22 +34,28 @@ source /usr/local/bin/virtualenvwrapper.sh
 export DEV="$HOME/Development"
 export REPO="$DEV/git-repos"
 export DOT="$REPO/dotfiles/"
+export ETC="$DEV/etc/"
 export BIN="$HOME/bin"
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="$PATH:/Applications/PyCharm.app/Contents/MacOS" # Add pycharm
+export PATH="$PATH:/$BIN/scripts"
+export GOPATH="$HOME/go"
+export PATH="$PATH:$GOPATH/bin"
 export EDITOR="vim"
-
 # term, fixes vim on tmux
 export TERM="screen-256color"
-
-# use macvim!
-alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # fzf-functions
 # taken from https://www.reddit.com/r/vim/comments/3f0zbg/psa_if_youre_using_ctrlp_use_this_maintained_fork/cto6285
-export FZF_DEFAULT_OPTS='-m'
+export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS='
+--color fg:242,bg:236,hl:65,fg+:15,bg+:239,hl+:108
+--color info:108,prompt:109,spinner:108,pointer:168,marker:168
+'
 
 fe() {
     # fe - Open the selected files with the default editor
@@ -137,9 +79,33 @@ fh() {
 fkill() {
     # fkill - kill process
     pid=$(ps -ef | sed 1d | fzf-tmux -m | awk '{print $2}')
-    if [ "x$pid" != "x" ]
+    if [ -n "$pid" ]
     then
         kill -${1:-9} $pid
     fi
 }
 
+source ~/.credentials/setup_env.sh
+
+launchctl load ~/Library/LaunchAgents/pbcopy.plist
+launchctl load ~/Library/LaunchAgents/pbpaste.plist
+
+export GOPATH=$HOME/go
+export PATH="$GOPATH/bin:$PATH"
+alias goto="cd $GOPATH/src/github.com"
+
+# AWS specific
+export AWS_DEFAULT_REGION=us-west-1
+
+# Persistence service specific
+export NPM_REGISTRY_URL=registry.npmjs.org
+
+killdebug () {
+    killme=$(lsof -i tcp:$1 | tail -n 1 | awk '{ print $2 }')
+    if [ -n "$killme" ]; then
+        echo "Killing pid $killme listening on port $1"
+        kill -9 $killme
+    else
+        echo "No debug process found"
+    fi
+}

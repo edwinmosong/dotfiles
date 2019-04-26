@@ -1,18 +1,38 @@
 [user]
     name = Edwin Mo Song
-    email = edwin.mo@live.com
+    email = emsong@splunk.com
 
 [alias]
     st = status
     cm = commit
     pom = push origin master
+    pr = pull --rebase
 
 [core]
-	excludesfile = /Users/edwinmo/.gitignore_global
+	excludesfile = /Users/emsong/.gitignore_global
+
+[init]
+	templatedir = ~/.git_templates
 
 [diff]
-	tool = vimdiff
+  tool = meld
 [difftool]
-	prompt = false
+  prompt = false
+[difftool "meld"]
+  trustExitCode = true
+  cmd = open -W -a Meld --args \"$LOCAL\" \"$PWD/$REMOTE\"
 [merge]
-    tool = vimdiff
+  tool = meld
+[mergetool]
+  prompt = false
+[mergetool "meld"]
+  trustExitCode = true
+  cmd = open -W -a Meld --args --auto-merge \"$PWD/$LOCAL\" \"$PWD/$BASE\" \"$PWD/$REMOTE\" --output=\"$PWD/$MERGED\"
+
+[url "git@github.com:"]
+  insteadOf = https://github.com/
+	insteadOf = https://github.com/
+	insteadOf = https://github.com/
+  
+[url "ssh://git@cd.splunkdev.com/"]
+	insteadOf = https://cd.splunkdev.com/
